@@ -1,5 +1,6 @@
 <?php
 include '../connect_db.php';
+session_start();
 ?>
 
 <?php
@@ -7,9 +8,12 @@ include '../connect_db.php';
 /** @var TYPE_NAME $conn */
 $userid = 1;
 $partnerId = 2;
+$_SESSION["userid"] = $userid;
+$_SESSION["partnerId"] = $partnerId;
 
 $res = mysqli_fetch_array($conn->query("select DISTINCT tbl_chat.use_id_1 FROM tbl_chat WHERE tbl_chat.use_id_1 in ($userid, $partnerId) and tbl_chat.use_id_2 in ($userid, $partnerId)"), MYSQLI_ASSOC);
 $useridIsOne = $res["use_id_1"] == $userid;
+$_SESSION["useridIsOne"] = $useridIsOne;
 ?>
 
 <!DOCTYPE html>

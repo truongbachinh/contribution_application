@@ -1,8 +1,11 @@
 <?php
 include '../connect_db.php';
-$userid = 1;
-$partnerId = 2;
-$useridIsOne = true;
+
+session_start();
+
+$userid = $_SESSION["userid"];
+$partnerId = $_SESSION["partnerId"];
+$useridIsOne = $_SESSION["useridIsOne"];
 
 $userid2 = $useridIsOne ? $partnerId : $userid;
 
