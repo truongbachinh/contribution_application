@@ -1,6 +1,6 @@
 <?php
-include "connect_db.php";
-
+// session_start();
+include "../connect_db.php";
 ?>
 <link rel="stylesheet" href="./css/student.css" />
 <header class="admin-header">
@@ -52,61 +52,24 @@ include "connect_db.php";
                         <div class="avatar avatar-sm avatar-online mr-3">
                             <span class="avatar-title rounded-circle bg-dark">T</span>
                         </div>
-
-                        <?php
-                        if (!empty($_SESSION["current_user"]["username"])) {
-
-
-                        ?>
-                            <div class="d-flex flex-column">
-                                <div class="name-student"><?php echo $_SESSION["current_user"]["username"] ?></div>
-                                <div class="role">Student Account</div>
-                            </div>
-                            <div class="dropdown-menu  dropdown-menu-right">
-                                <a class="dropdown-item" onclick="profileButton()"> Profile
-                                </a>
-                                <a class="dropdown-item" onclick="changePassword()"> Reset Password</a>
-                                <a class="dropdown-item" href=""> Help </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" onclick="logoutButton()"> Logout</a>
-                            </div>
-                        <?php
-                        } else {
+                        <div class="d-flex flex-column">
+                            <div class="name-student"><?= $_SESSION["current_user"]["fullname"] ?></div>
 
 
-                        ?>
-                            <div class="d-flex flex-column">
-                                <div class="name-student">Guest</div>
-
-                            </div>
-                            <div class="dropdown-menu  dropdown-menu-right">
-                                <a class="dropdown-item" onclick="loginButton()"> Login</a>
-                            </div>
-                        <?php
-                        }
-                        ?>
+                            <div class="role">Manager Coordinator Account</div>
+                        </div>
                     </div>
                 </a>
-
+                <div class="dropdown-menu  dropdown-menu-right">
+                    <a class="dropdown-item" href="#"> Profile
+                    </a>
+                    <a class="dropdown-item" href="#"> Reset Password</a>
+                    <a class="dropdown-item" href="#"> Help </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#"> Logout</a>
+                </div>
             </li>
         </ul>
 
     </nav>
 </header>
-<script type="text/javascript">
-    function logoutButton() {
-        window.location = "/b/contribution_application/account/logout.php";
-    }
-
-    function loginButton() {
-        window.location = "/b/contribution_application/account/login.php";
-    }
-
-    function profileButton() {
-        window.location = "./profile.php";
-    }
-
-    function changePassword() {
-        window.location = "./change_password.php";
-    }
-</script>

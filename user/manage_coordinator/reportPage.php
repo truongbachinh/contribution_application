@@ -1,6 +1,17 @@
 <?php
-include "connect_db.php";
-session_start(); ?>
+session_start();
+include "../../connect_db.php";
+$idFile = $_GET['idfile'];
+$userFacultyId = $_SESSION["current_user"]["faculty_id"];
+$userId = $_SESSION["current_user"]["u_id"];
+
+$fileContent = $conn->query("SELECT * from `file_content` where `file_submit_Id` = '$idFile'");
+// $viewFile = array();
+// while ($view = mysqli_fetch_array($fileContent)) {
+//     $viewFile[] = $view;
+// }
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,7 +28,7 @@ session_start(); ?>
 <meta property="og:description" content="atlas is Bootstrap 4 based admin panel.It comes with 100's widgets,charts and icons" />
 <meta property="og:image" content="https://cdn.dribbble.com/users/180706/screenshots/5424805/the_sceens_-_mobile_perspective_mockup_3_-_by_tranmautritam.jpg" />
 <meta property="og:site_name" content="atlas " />
-<title>View Report Page</title>
+<title>Home Page</title>
 <link rel="icon" type="image/x-icon" href="assets/img/logo.png" />
 <link rel="icon" href="assets/img/logo.png" type="image/png" sizes="16x16">
 <link rel='stylesheet' href='https://d33wubrfki0l68.cloudfront.net/css/478ccdc1892151837f9e7163badb055b8a1833a5/light/assets/vendor/pace/pace.css' />
@@ -36,18 +47,30 @@ session_start(); ?>
 <link rel='stylesheet' type='text/css' href='https://d33wubrfki0l68.cloudfront.net/css/16e33a95bb46f814f87079394f72ef62972bd197/light/assets/css/atmos.min.css' />
 
 <body>
-
-    <body class="sidebar-pinned ">
-        <?php include 'aside.php' ?>
-        <main class="admin-main">
-            <!-- Header -->
+    <main class="admin-main">
+        <section id="container">
             <?php include 'header.php' ?>
-            <!-- Session -->
             <section>
                 <section class="wrapper ">
                     <div class="row ">
                         <div class="col-lg-9 main-chart ">
-                            <img style="width: 100% " src="img/background.jpg ">
+                            <?php
+                            $count = 1;
+                            if ($fileContent->num_rows > 0) {
+                                while ($row = $fileContent->fetch_assoc()) {
+
+                                    $imageURL = '../student/file_library/' . $row["file_content_name"];
+                            ?>
+                                    <div>
+                                        <p>File STT <?= $count++ ?></p>
+                                        <a href="<?= $row['file_content_name'] ?>"> <img src="<?php echo $imageURL; ?>" alt="" width="70" height="70" class="img-fluid" id="img-view-details" />
+                                        </a>
+
+                                    </div>
+
+                            <?php }
+                            }
+                            ?>
                         </div>
 
                         <div class="col-lg-3 ds " style="position: fixed; right: 0; z-index: 1;height: 100%; ">
@@ -91,13 +114,16 @@ session_start(); ?>
                                         <div class=" col-lg-10" style="color: #000; font-size: 12px; font-weight: 400; ">V1.0 PHONG98 - Validation Phong</div>
                                     </div>
                                 </div>
-                                <div class=" col-md-12 col-lg-12 col-xs-12 text-left " style=" margin-top:7%; width: 80%;  border-radius: 15px ">
+                                <div class=" col-md-12 col-lg-12 col-xs-12 text-left " style=" margin-top:7%; width: 80%; margin-left: 5%; border-radius: 15px ">
                                     <h3>Feedback</h3>
-                                    <textarea style="width: 100%; height: 180px; border-radius: 3px; border-radius: 14px; resize: none; margin-bottom: 7% ">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</textarea>
+                                    <textarea style="width: 88%; height: 180px; border-radius: 3px; border-radius: 14px; resize: none; margin-bottom: 7% "></textarea>
                                 </div>
                                 <div class=" col-md-12 col-lg-12 col-xs-12 text-right row" style="margin-top: 4%; ">
                                     <div class="col-md-6 col-lg-6 col-xs-6 ">
-                                        <button class="btn btn-primary ">Read More</button>
+                                        <button class="btn btn-primary ">Approved</button>
+                                    </div>
+                                    <div class="col-md-6 col-lg-6 col-xs-6 text-left " style="padding-left: 12%">
+                                        <button class="btn btn-danger ">Reject</button>
                                     </div>
                                 </div>
                             </div>
@@ -120,34 +146,34 @@ session_start(); ?>
                     </a>
                 </div>
             </footer>
-            </section>
+        </section>
 
-        </main>
-    </body>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    </main>
+</body>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
-    <script src='https://d33wubrfki0l68.cloudfront.net/bundles/85bd871e04eb889b6141c1aba0fedfa1a2215991.js'></script>
-    <!--page specific scripts for demo-->
+<script src='https://d33wubrfki0l68.cloudfront.net/bundles/85bd871e04eb889b6141c1aba0fedfa1a2215991.js'></script>
+<!--page specific scripts for demo-->
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66116118-3"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-66116118-3"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
 
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-        gtag('config', 'UA-66116118-3');
-    </script>
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', 'UA-66116118-3');
+</script>
 
-    <!--Additional Page includes-->
-    <script src='https://d33wubrfki0l68.cloudfront.net/js/c36248babf70a3c7ad1dcd98d4250fa60842eea9/light/assets/vendor/apexchart/apexcharts.min.js'></script>
-    <!--chart data for current dashboard-->
-    <script src='https://d33wubrfki0l68.cloudfront.net/js/d678dabfdc5c3131d492af7ef517fbe46fbbd8e4/light/assets/js/dashboard-01.js'></script>
+<!--Additional Page includes-->
+<script src='https://d33wubrfki0l68.cloudfront.net/js/c36248babf70a3c7ad1dcd98d4250fa60842eea9/light/assets/vendor/apexchart/apexcharts.min.js'></script>
+<!--chart data for current dashboard-->
+<script src='https://d33wubrfki0l68.cloudfront.net/js/d678dabfdc5c3131d492af7ef517fbe46fbbd8e4/light/assets/js/dashboard-01.js'></script>
 
 
 </body>
