@@ -1,6 +1,12 @@
 <?php
-
+session_start();
 include "../connect_db.php";
+$userId = $_SESSION["current_user"]["u_id"];
+$infor = $conn->query("SELECT f.*, u.* FROM user as u INNER JOIN faculty as f ON u.faculty_id = f.f_id where role = 'student' and u_id = '$userId' ");
+$userFacultyInfor = array();
+while ($userInfor = mysqli_fetch_array($infor)) {
+    $userFacultyInfor[] = $userInfor;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,6 +26,11 @@ include "../connect_db.php";
 </head>
 
 <body>
+    <div>
+
+        <h1 style="color:red">Tk <?= $_SESSION["current_user"]["fullname"] ?></h1>
+
+    </div>
     <div class="container-fluid">
         <div class="row-fluid" style="background-color: white; min-height: 1000px; padding:10px;">
             <div class="widget-content nopadding">
@@ -38,8 +49,8 @@ include "../connect_db.php";
                     <tbody>
                         <?php
                         $i = 1;
-                        $res = mysqli_query($conn, "select * from faculty");
-                        while ($row = mysqli_fetch_array($res)) {
+                        $res = mysqli_query($conn, "select * from faculty ");
+                        foreach ($userFacultyInfor as $row) {
                         ?>
                             <tr>
                                 <td><?php echo $i++; ?></td>

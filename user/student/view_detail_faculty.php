@@ -46,7 +46,13 @@ $faculty = mysqli_fetch_assoc($result);
                         <?php
                         $i = 1;
                         $res = mysqli_query($conn, "select * from topic where topic_of_faculty = '$idFaculty'");
+
                         while ($row = mysqli_fetch_array($res)) {
+                            $selected_date = ($row["topic_deadline"]);
+                            // echo $selected_date, "a ";
+                            $duration = 14;
+                            $duration_type = 'day';
+                            $deadline = date('Y/m/d H:i:s', strtotime($selected_date . ' +' . $duration . ' ' . $duration_type));
                         ?>
                             <tr>
                                 <td><?php echo $i++; ?></td>
@@ -54,7 +60,7 @@ $faculty = mysqli_fetch_assoc($result);
                                 <td><?php echo $row["topic_name"]; ?></td>
                                 <td><?php echo $row["topic_description"]; ?></td>
                                 <td><?php echo  $row["topic_deadline"] ?></td>
-                                <td>+14 days</td>
+                                <td><?= $deadline ?></td>
                                 <td><a href="submit.php?idf=<?= $idFaculty ?>&idt=<?= $row['id'] ?>">Select</a></td>
                             </tr>
                         <?php

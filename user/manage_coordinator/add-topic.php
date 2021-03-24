@@ -1,6 +1,26 @@
 <?php
+session_start();
 include "../connect_db.php";
 $idFaculty = $_GET['idl'];
+$userFacultyId = $_SESSION["current_user"]["faculty_id"];
+$userId = $_SESSION["current_user"]["u_id"];
+
+
+$topic = $conn->query("SELECT * from topic where topic_of_faculty = '$idFaculty' ");
+$topicSubmit = mysqli_fetch_assoc($topic);
+
+if ($topicSubmit != NULL) {
+    $topicSubmit = mysqli_fetch_assoc($topic);
+    $selected_date = ($topicSubmit["topic_deadline"]);
+    // echo $selected_date, "a ";
+    $duration = 14;
+    $duration_type = 'day';
+    $date1 = ("2021/05/06 22:00:00");
+    $deadline = date('Y/m/d H:i:s', strtotime($selected_date . ' +' . $duration . ' ' . $duration_type));
+}
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -43,7 +63,6 @@ $idFaculty = $_GET['idl'];
         <!-- Header -->
         <?php include 'header.php' ?>
         <!-- Session -->
-
         <section class="admin-content">
             <div class="container m-t-30">
                 <div class="card m-b-30">
@@ -97,6 +116,7 @@ $idFaculty = $_GET['idl'];
                             <th>Topic description</th>
                             <th>Topic Start deadline</th>
                             <th>Topic End deadline</th>
+                            <th>View Detail</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -111,7 +131,8 @@ $idFaculty = $_GET['idl'];
                                 <td><?php echo $row["topic_name"]; ?></td>
                                 <td><?php echo $row["topic_description"]; ?></td>
                                 <td><?php echo  $row["topic_deadline"] ?></td>
-                                <td>+14 days</td>
+                                <td><?= $deadline ?></td>
+                                <td style="color: red"><a href="listofreport.php?idt=<?= $row["id"] ?>">Select</a></td>
                             </tr>
                         <?php
                         }
