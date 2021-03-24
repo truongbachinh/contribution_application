@@ -116,7 +116,15 @@ if (isset($_POST["login"])) {
 
     $count = 0;
     $res = mysqli_query($conn, "select * from user where username='$username' && password='$password'");
+    $result = mysqli_query($conn, "select * from user where username='$username' && password='$password'");
     $count = mysqli_num_rows($res);
+    while ($row = mysqli_fetch_array($result)) {
+        $status = $row["status"];
+        $role = $row["role"];
+    }
+    var_dump($status);
+    var_dump($role);
+
     if ($count == 0) {
 ?>
         <script type="text/javascript">
@@ -125,14 +133,30 @@ if (isset($_POST["login"])) {
     <?php
 
 
-    } else {
+    } elseif ($status == "1" && $role == "student") {
+        $user = mysqli_fetch_array($res);
+        $userCurrent =  $_SESSION["current_user"] = $user;
+    ?>
+        <script type="text/javascript">
+            window.location = "../user/student/aside.php";
+        </script>
+    <?php
+    } elseif ($status == "1" && $role == "manager-coordinator") {
+        $user = mysqli_fetch_array($res);
+        $userCurrent =  $_SESSION["current_user"] = $user;
+    ?>
+        <script type="text/javascript">
+            window.location = "../user/manage_coordinator/aside.php";
+        </script>
+    <?php
+    } elseif ($status == "1" && $role == "admin") {
         $user = mysqli_fetch_assoc($res);
         $userCurrent =  $_SESSION["current_user"] = $user;
-        var_dump($_SESSION["current_user"]);
+
 
     ?>
         <script type="text/javascript">
-            window.location = "../user/student/homepage.php";
+            window.location = "../user/admin/aside.php";
         </script>
 <?php
     }
