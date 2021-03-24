@@ -330,21 +330,3 @@ if (isset($_POST["submit"])) {
 </body>
 
 </html>
-
-<?php
-class FileSubmit
-{
-    private $file_id;
-    private $file_categories_id;
-private $user_id;
-private $file_name;
-private $file_description;
-private $file_faculty_id;
-private $file_semester_id;
-private $status;
-private $comment;
-private $file_date_uploaded;
-private $file_date_edited;
-private $file_content_upload;
-}
-?>

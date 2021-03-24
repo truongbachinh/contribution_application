@@ -1,3 +1,8 @@
+
+DROP DATABASE contribution_appication;
+CREATE DATABASE contribution_appication;
+USE contribution_appication;
+
 -- phpMyAdmin SQL Dump
 -- version 4.9.7
 -- https://www.phpmyadmin.net/
@@ -17,9 +22,9 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `admin` (
-  `username` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `admin_id` int(11) NOT NULL
+                         `username` varchar(255) NOT NULL,
+                         `password` varchar(255) NOT NULL,
+                         `admin_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -37,11 +42,11 @@ INSERT INTO `admin` (`username`, `password`, `admin_id`) VALUES
 --
 
 CREATE TABLE `faculty` (
-  `f_id` int(20) NOT NULL,
-  `f_name` varchar(125) NOT NULL,
-  `f_description` text NOT NULL,
-  `f_manager` varchar(255) NOT NULL,
-  `faculty_id` varchar(20) NOT NULL
+                           `f_id` int(20) NOT NULL,
+                           `f_name` varchar(125) NOT NULL,
+                           `f_description` text NOT NULL,
+                           `f_manager` varchar(255) NOT NULL,
+                           `faculty_id` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -76,10 +81,10 @@ CREATE TABLE `file_categories` (
 INSERT INTO `file_categories` (`ctg_id`, `ctg_name`, `ctg_description`, `ctg_deadline`) VALUES
 (32, 'Nojp bai', ',jdblskl', 'l83ow');
 CREATE TABLE `file_content` (
-  `file_content_id` int(20) NOT NULL,
-  `file_content_name` varchar(3000) NOT NULL,
-  `file_content_update_name` int(11) NOT NULL,
-  `file_submit_id` int(20) NOT NULL
+                                `file_content_id` int(20) NOT NULL,
+                                `file_content_name` varchar(3000) NOT NULL,
+                                `file_content_update_name` int(11) NOT NULL,
+                                `file_submit_id` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -101,11 +106,11 @@ INSERT INTO `file_content` (`file_content_id`, `file_content_name`, `file_conten
 --
 
 CREATE TABLE `file_submit` (
-  `file_id` int(11) NOT NULL,
-  `file_authod` varchar(255) NOT NULL,
-  `file_art` varchar(255) NOT NULL,
-  `file_content_upload` varchar(555) NOT NULL,
-  `file_date_uploaded` int(11) NOT NULL
+                               `file_id` int(11) NOT NULL,
+                               `file_authod` varchar(255) NOT NULL,
+                               `file_art` varchar(255) NOT NULL,
+                               `file_content_upload` varchar(555) NOT NULL,
+                               `file_date_uploaded` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -125,24 +130,17 @@ INSERT INTO `file_submit` (`file_id`, `file_authod`, `file_art`, `file_content_u
 -- Table structure for table `file_submit_to_topic`
 --
 
---
--- Dumping data for table `file_submit_to_system`
---
-
-INSERT INTO `file_submit_to_system` (`file_id`, `file_categories_id`, `user_id`, `file_name`, `file_description`, `file_faculty_id`, `file_semester_id`, `status`, `comment`, `file_date_uploaded`, `file_date_edited`, `file_content_upload`, `date_post`, `file_submit_id`) VALUES
-(32424, 32, 353, '23451235', 'asgasdf,ajSHFOIUA0FOIHAP', 34, 233, '1', 'DAY LA COMMENT', '2021-03-02 09:24:33', '2021-03-19 09:24:33', 'jsoirhpgihaoeh[foha\sdl;aksngpiogfesfasdgasdg', '2021-03-02', 29);
-
 
 CREATE TABLE `file_submit_to_topic` (
-  `id` int(20) NOT NULL,
-  `file_name` varchar(55) NOT NULL,
-  `file_authod` varchar(55) NOT NULL,
-  `file_status` int(20) NOT NULL,
-  `file_comment` text NOT NULL,
-  `file_date_uploaded` datetime NOT NULL,
-  `file_date_edited` datetime NOT NULL,
-  `file_topic_uploaded` int(11) NOT NULL,
-  `file_userId_uploaded` int(20) NOT NULL
+                                        `id` int(20) NOT NULL,
+                                        `file_name` varchar(55) NOT NULL,
+                                        `file_authod` varchar(55) NOT NULL,
+                                        `file_status` int(20) NOT NULL,
+                                        `file_comment` text NOT NULL,
+                                        `file_date_uploaded` datetime NOT NULL,
+                                        `file_date_edited` datetime NOT NULL,
+                                        `file_topic_uploaded` int(11) NOT NULL,
+                                        `file_userId_uploaded` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -150,8 +148,8 @@ CREATE TABLE `file_submit_to_topic` (
 --
 
 INSERT INTO `file_submit_to_topic` (`id`, `file_name`, `file_authod`, `file_status`, `file_comment`, `file_date_uploaded`, `file_date_edited`, `file_topic_uploaded`, `file_userId_uploaded`) VALUES
-(45, 'Cloud Computing', 'admin', 1, '', '2021-03-24 12:35:54', '0000-00-00 00:00:00', 11, 38),
-(47, 'student 2 nộp môn 1', 'CHinh 2', 1, '', '2021-03-24 12:57:14', '0000-00-00 00:00:00', 11, 40);
+(45, 'Cloud Computing', 'admin', 1, '', '2021-03-24 12:35:54', '2021-03-24 12:35:54', 11, 38),
+(47, 'student 2 nộp môn 1', 'CHinh 2', 1, '', '2021-03-24 12:57:14', '2021-03-24 12:35:54', 11, 40);
 
 -- --------------------------------------------------------
 
@@ -160,12 +158,12 @@ INSERT INTO `file_submit_to_topic` (`id`, `file_name`, `file_authod`, `file_stat
 --
 
 CREATE TABLE `news` (
-  `news_id` int(20) NOT NULL,
-  `news_content_short` varchar(255) NOT NULL,
-  `news_content` text NOT NULL,
-  `news_image` varchar(255) NOT NULL,
-  `news_date_create_time` datetime NOT NULL,
-  `news_title` varchar(125) NOT NULL
+                        `news_id` int(20) NOT NULL,
+                        `news_content_short` varchar(255) NOT NULL,
+                        `news_content` text NOT NULL,
+                        `news_image` varchar(255) NOT NULL,
+                        `news_date_create_time` datetime NOT NULL,
+                        `news_title` varchar(125) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -175,9 +173,9 @@ CREATE TABLE `news` (
 --
 
 CREATE TABLE `role` (
-  `role_id` int(20) NOT NULL,
-  `role_name` varchar(15) NOT NULL,
-  `role_full_name` varchar(15) NOT NULL
+                        `role_id` int(20) NOT NULL,
+                        `role_name` varchar(15) NOT NULL,
+                        `role_full_name` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -195,9 +193,9 @@ INSERT INTO `role` (`role_id`, `role_name`, `role_full_name`) VALUES
 --
 
 CREATE TABLE `semester` (
-  `semester_id` int(20) NOT NULL,
-  `semester` varchar(125) NOT NULL,
-  `schoolyear` varchar(125) NOT NULL
+                            `semester_id` int(20) NOT NULL,
+                            `semester` varchar(125) NOT NULL,
+                            `schoolyear` varchar(125) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -214,11 +212,11 @@ INSERT INTO `semester` (`semester_id`, `semester`, `schoolyear`) VALUES
 --
 
 CREATE TABLE `tbl_chat` (
-  `id` int(11) NOT NULL,
-  `use_id_1` int(11) NOT NULL,
-  `use_id_2` int(11) NOT NULL,
-  `message` varchar(255) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+                            `id` int(11) NOT NULL,
+                            `use_id_1` int(11) NOT NULL,
+                            `use_id_2` int(11) NOT NULL,
+                            `message` varchar(255) NOT NULL,
+                            `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -246,12 +244,12 @@ INSERT INTO `tbl_chat` (`id`, `use_id_1`, `use_id_2`, `message`, `date`) VALUES
 --
 
 CREATE TABLE `topic` (
-  `id` int(11) NOT NULL,
-  `topic_id` varchar(20) NOT NULL,
-  `topic_name` varchar(255) NOT NULL,
-  `topic_description` varchar(255) NOT NULL,
-  `topic_deadline` datetime NOT NULL,
-  `topic_of_faculty` int(20) NOT NULL
+                         `id` int(11) NOT NULL,
+                         `topic_id` varchar(20) NOT NULL,
+                         `topic_name` varchar(255) NOT NULL,
+                         `topic_description` varchar(255) NOT NULL,
+                         `topic_deadline` datetime NOT NULL,
+                         `topic_of_faculty` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -274,16 +272,16 @@ INSERT INTO `topic` (`id`, `topic_id`, `topic_name`, `topic_description`, `topic
 --
 
 CREATE TABLE `user` (
-  `u_id` int(20) NOT NULL,
-  `username` varchar(50) DEFAULT NULL,
-  `password` varchar(125) DEFAULT NULL,
-  `email` varchar(50) NOT NULL,
-  `status` int(10) NOT NULL,
-  `u_create_time` int(11) NOT NULL,
-  `u_update_time` int(11) NOT NULL,
-  `fullname` varchar(125) NOT NULL,
-  `role` varchar(31) NOT NULL,
-  `faculty_id` int(20) NOT NULL
+                        `u_id` int(20) NOT NULL,
+                        `username` varchar(50) DEFAULT NULL,
+                        `password` varchar(125) DEFAULT NULL,
+                        `email` varchar(50) NOT NULL,
+                        `status` int(10) NOT NULL,
+                        `u_create_time` int(11) NOT NULL,
+                        `u_update_time` int(11) NOT NULL,
+                        `fullname` varchar(125) NOT NULL,
+                        `role` varchar(31) NOT NULL,
+                        `faculty_id` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -305,15 +303,15 @@ INSERT INTO `user` (`u_id`, `username`, `password`, `email`, `status`, `u_create
 --
 
 CREATE TABLE `user_infor` (
-  `id` int(20) NOT NULL,
-  `id_card` varchar(20) NOT NULL,
-  `name` varchar(128) NOT NULL,
-  `address` varchar(125) NOT NULL,
-  `phone` varchar(12) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `DOB` date NOT NULL,
-  `major` varchar(128) NOT NULL,
-  `user_id` int(20) NOT NULL
+                              `id` int(20) NOT NULL,
+                              `id_card` varchar(20) NOT NULL,
+                              `name` varchar(128) NOT NULL,
+                              `address` varchar(125) NOT NULL,
+                              `phone` varchar(12) NOT NULL,
+                              `email` varchar(50) NOT NULL,
+                              `DOB` date NOT NULL,
+                              `major` varchar(128) NOT NULL,
+                              `user_id` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -323,9 +321,9 @@ CREATE TABLE `user_infor` (
 --
 
 CREATE TABLE `user_role` (
-  `user_role_Id` int(20) NOT NULL,
-  `user_id` int(20) NOT NULL,
-  `role_id` int(20) NOT NULL
+                             `user_role_Id` int(20) NOT NULL,
+                             `user_id` int(20) NOT NULL,
+                             `role_id` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -334,30 +332,27 @@ CREATE TABLE `user_role` (
 
 --
 -- Indexes for table `faculty`
---
-ALTER TABLE `faculty`
-  ADD PRIMARY KEY (`f_id`),
-  ADD KEY `teacher_id` (`teacher_id`);
+
 
 --
 -- Indexes for table `file_content`
 --
 ALTER TABLE `file_content`
-  ADD PRIMARY KEY (`file_content_id`),
+    ADD PRIMARY KEY (`file_content_id`),
   ADD KEY `fogeign_key_file_file_submit` (`file_submit_id`);
 
 --
 -- Indexes for table `file_submit`
 --
 ALTER TABLE `file_submit`
-  ADD PRIMARY KEY (`file_id`);
+    ADD PRIMARY KEY (`file_id`);
 
 --
 -- Indexes for table `file_submit_to_topic`
 --
 
 ALTER TABLE `file_submit_to_topic`
-  ADD PRIMARY KEY (`id`),
+    ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `file_userId_uploaded` (`file_userId_uploaded`),
   ADD KEY `fogeign_key_file_topic` (`file_topic_uploaded`);
 
@@ -365,43 +360,43 @@ ALTER TABLE `file_submit_to_topic`
 -- Indexes for table `news`
 --
 ALTER TABLE `news`
-  ADD PRIMARY KEY (`news_id`);
+    ADD PRIMARY KEY (`news_id`);
 
 --
 -- Indexes for table `role`
 --
 ALTER TABLE `role`
-  ADD PRIMARY KEY (`role_id`,`role_name`);
+    ADD PRIMARY KEY (`role_id`,`role_name`);
 
 --
 -- Indexes for table `semester`
 --
 ALTER TABLE `semester`
-  ADD PRIMARY KEY (`semester_id`);
+    ADD PRIMARY KEY (`semester_id`);
 
 --
 -- Indexes for table `tbl_chat`
 --
 ALTER TABLE `tbl_chat`
-  ADD PRIMARY KEY (`id`);
+    ADD PRIMARY KEY (`id`);
 -- Indexes for table `topic`
 --
 ALTER TABLE `topic`
-  ADD PRIMARY KEY (`id`),
+    ADD PRIMARY KEY (`id`),
   ADD KEY `fogeign_key_topic_faculty` (`topic_of_faculty`);
 
 --
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`u_id`),
+    ADD PRIMARY KEY (`u_id`),
   ADD KEY `fogeign_key_user_faculty` (`faculty_id`);
 
 --
 -- Indexes for table `user_infor`
 --
 ALTER TABLE `user_infor`
-  ADD PRIMARY KEY (`id`),
+    ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `id_card` (`id_card`),
   ADD KEY `fogeign_key_user_user_infor` (`user_id`);
 
@@ -409,7 +404,7 @@ ALTER TABLE `user_infor`
 -- Indexes for table `user_role`
 --
 ALTER TABLE `user_role`
-  ADD PRIMARY KEY (`user_role_Id`),
+    ADD PRIMARY KEY (`user_role_Id`),
   ADD KEY `fogeign_key_userRole_role` (`role_id`),
   ADD KEY `fogeign_key_userRole_user` (`user_id`);
 
@@ -420,64 +415,60 @@ ALTER TABLE `user_role`
 --
 -- AUTO_INCREMENT for table `faculty`
 --
-ALTER TABLE `faculty`
-  MODIFY `f_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `file_content`
 --
 ALTER TABLE `file_content`
-  MODIFY `file_content_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+    MODIFY `file_content_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `file_submit`
 --
 ALTER TABLE `file_submit`
-  MODIFY `file_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+    MODIFY `file_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `file_submit_to_topic`
 --
-ALTER TABLE `file_submit_to_system`
-  MODIFY `file_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32425;
 ALTER TABLE `file_submit_to_topic`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+    MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `news`
 --
 ALTER TABLE `news`
-  MODIFY `news_id` int(20) NOT NULL AUTO_INCREMENT;
+    MODIFY `news_id` int(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `topic`
 --
 ALTER TABLE `topic`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `tbl_chat`
 --
 ALTER TABLE `tbl_chat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `u_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+    MODIFY `u_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `user_infor`
 --
 ALTER TABLE `user_infor`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+    MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `user_role`
 --
 ALTER TABLE `user_role`
-  MODIFY `user_role_Id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+    MODIFY `user_role_Id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
@@ -486,51 +477,31 @@ ALTER TABLE `user_role`
 --
 -- Constraints for table `faculty`
 --
-ALTER TABLE `faculty`
-  ADD CONSTRAINT `faculty_ibfk_1` FOREIGN KEY (`teacher_id`) REFERENCES `user` (`u_id`);
 
---
--- Constraints for table `file_submit_to_system`
---
-ALTER TABLE `file_submit_to_system`
-  ADD CONSTRAINT `file_submit_to_system_ibfk_1` FOREIGN KEY (`file_categories_id`) REFERENCES `file_categories` (`ctg_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `file_submit_to_system_ibfk_2` FOREIGN KEY (`file_submit_id`) REFERENCES `file_submit` (`file_id`),
-  ADD CONSTRAINT `file_submit_to_system_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`u_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fogeign_key_file_faculty` FOREIGN KEY (`file_faculty_id`) REFERENCES `faculty` (`f_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fogeign_key_file_semester` FOREIGN KEY (`file_semester_id`) REFERENCES `semester` (`semester_id`) ON DELETE CASCADE ON UPDATE CASCADE;
--- Constraints for table `file_content`
---
+
 ALTER TABLE `file_content`
-  ADD CONSTRAINT `fogeign_key_file_file_submit` FOREIGN KEY (`file_submit_id`) REFERENCES `file_submit_to_topic` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+    ADD CONSTRAINT `fogeign_key_file_file_submit` FOREIGN KEY (`file_submit_id`) REFERENCES `file_submit_to_topic` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `file_submit_to_topic`
 --
 ALTER TABLE `file_submit_to_topic`
-  ADD CONSTRAINT `fogeign_key_file_topic` FOREIGN KEY (`file_topic_uploaded`) REFERENCES `topic` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    ADD CONSTRAINT `fogeign_key_file_topic` FOREIGN KEY (`file_topic_uploaded`) REFERENCES `topic` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fogeign_key_file_user` FOREIGN KEY (`file_userId_uploaded`) REFERENCES `user` (`u_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `topic`
---
-ALTER TABLE `topic`
-  ADD CONSTRAINT `fogeign_key_topic_faculty` FOREIGN KEY (`topic_of_faculty`) REFERENCES `faculty` (`f_id`);
 
 --
 -- Constraints for table `user`
 --
-ALTER TABLE `user`
-  ADD CONSTRAINT `fogeign_key_user_faculty` FOREIGN KEY (`faculty_id`) REFERENCES `faculty` (`f_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
 --
 -- Constraints for table `user_infor`
 --
 ALTER TABLE `user_infor`
-  ADD CONSTRAINT `fogeign_key_user_user_infor` FOREIGN KEY (`user_id`) REFERENCES `user` (`u_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+    ADD CONSTRAINT `fogeign_key_user_user_infor` FOREIGN KEY (`user_id`) REFERENCES `user` (`u_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `user_role`
 --
 ALTER TABLE `user_role`
-  ADD CONSTRAINT `fogeign_key_userRole_role` FOREIGN KEY (`role_id`) REFERENCES `role` (`role_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    ADD CONSTRAINT `fogeign_key_userRole_role` FOREIGN KEY (`role_id`) REFERENCES `role` (`role_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fogeign_key_userRole_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`u_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
