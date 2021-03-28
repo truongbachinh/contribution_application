@@ -3,8 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="d3729b3f-39d1-413c-acd2-a54b760576bc" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/contribution_appication.sql" beforeDir="false" afterPath="$PROJECT_DIR$/contribution_appication.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/post.php" beforeDir="false" afterPath="$PROJECT_DIR$/user/post.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chat/chat.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chat/chat.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chat/conversation.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chat/plink.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/account/register.php" beforeDir="false" afterPath="$PROJECT_DIR$/account/register.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/connect_db.php" beforeDir="false" afterPath="$PROJECT_DIR$/user/connect_db.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,6 +97,7 @@
       <workItem from="1616571297213" duration="773000" />
       <workItem from="1616573001157" duration="1627000" />
       <workItem from="1616575360198" duration="174000" />
+      <workItem from="1616575551444" duration="4314000" />
     </task>
     <servers />
   </component>

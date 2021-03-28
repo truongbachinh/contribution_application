@@ -79,7 +79,9 @@ include "../connect_db.php"
     $button = '';
     if (isset($_POST["register"])) {
         $count = 0;
-        $res = mysqli_query($conn, "select * from user where username ='$_POST[username]'") or die(mysqli_error($link));
+
+        /** @var TYPE_NAME $conn */
+        $res = mysqli_query($conn, "select * from user where username ='$_POST[username]'") or die(mysqli_error($conn));
         $count = mysqli_num_rows($res);
 
         if ($count > 0) {
